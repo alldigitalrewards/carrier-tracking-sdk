@@ -7,13 +7,13 @@ use AllDigitalRewards\CarrierTracking\CarrierResponse\DhlResponse;
 
 class DhlTrackingRequest extends AbstractApiRequest
 {
-    public function __construct(string $trackingNumber)
+    public function __construct(string $trackingNumber, string $apiKey)
     {
         $this->trackingNumber = $trackingNumber;
-        $this->setHttpEndpoint("https://api-eu.dhl.com/track/shipments?");
+        $this->setHttpEndpoint("https://api-eu.dhl.com/track/shipments");
         $this->setHeaders([
             'Accept' => 'application/json',
-            'DHL-API-Key' => getenv('DHL_API_KEY'),
+            'DHL-API-Key' => $apiKey,
         ]);
     }
 
@@ -25,5 +25,10 @@ class DhlTrackingRequest extends AbstractApiRequest
     public function getResponseObject(): AbstractCarrierResponse
     {
         return new DhlResponse();
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [];
     }
 }

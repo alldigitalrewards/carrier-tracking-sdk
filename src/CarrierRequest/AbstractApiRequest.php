@@ -3,8 +3,9 @@
 namespace AllDigitalRewards\CarrierTracking\CarrierRequest;
 
 use AllDigitalRewards\CarrierTracking\CarrierResponse\AbstractCarrierResponse;
+use JsonSerializable;
 
-abstract class AbstractApiRequest
+abstract class AbstractApiRequest  implements JsonSerializable
 {
     protected string $trackingNumber = '';
     protected array $headers = [];
