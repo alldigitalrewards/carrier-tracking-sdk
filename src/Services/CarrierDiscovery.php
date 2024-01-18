@@ -2,22 +2,14 @@
 
 namespace AllDigitalRewards\CarrierTracking\Services;
 
-class CarrierDiscovery
+readonly class CarrierDiscovery
 {
-    /**
-     * @var string
-     */
-    private $trackingNumber;
 
-    public function __construct(string $trackingNumber)
+    public function __construct(private readonly string $trackingNumber)
     {
-        $this->trackingNumber = $trackingNumber;
     }
 
-    /**
-     * @return ?string
-     */
-    public function detectCarrier()
+    public function detectCarrier(): ?string
     {
         // Remove any spaces and convert to uppercase
         $trackingNumber = strtoupper(str_replace(' ', '', $this->trackingNumber));
